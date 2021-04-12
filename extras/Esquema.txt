@@ -1,0 +1,84 @@
+/**
+   Name:     Arduino - Gestor de riego
+   Autor:    Gabriel Berenguer
+   License:  CC BY-NC-SA 3.0
+   Date:     2018/03/19
+
+               Arduino UNO pinout
+               ___________________                    
+              | 7-12V       USB   |                                     DHT11 (Hum./temp)
+              |                   |                                       | | |
+              |               AREF|                                       D + - 
+              |                GND|                                       7
+              |            SCK/ 13| SCK  (SD)
+              |IOREF      MISO/ 12| MSIO (SD)                           YL-69 (Humedad suelo)
+              |RESET      MOSI/-11| MOSI (SD)                             | | | |
+              |3V3          SS/-10|                                       + - A D
+              |5V               -9| CS   (SD) 
+              |GND               8| MH-RD (Rain)                        LCD-I2C (Pantalla)
+              |GND                |                                       -- GND -> -
+              |VIN               7| DHT11 (humidity/temperature)          -- VCC -> +
+              |                 -6| ECHO    HR04                          -- SDA -> A4
+              |                 -5| TRIGGER HR04                          -- SCL -> A5
+  RLY (Bomba) |A0/14             4| ENCODER CLK 
+  RLY (Red)   |A1/15            -3| ENCODER DT                          Water Sensor
+    YL-69 (S) |A2/16             2| ENCODER SW                             | | |
+    YL-69 (H) |A3/17              |                                        A + -
+  280 CLK LCD |A4/18/SDA      1/RX| RLY (Suelo)                            1
+  280 CLK LCD |A5/19/SCL      0/TX| RLY (Huerto)                        MH-RD (RainDrops)
+              |___________________|                                        | | | |
+                                                                           A D - +
+                                                                             8
+                                                                        BME280
+                                                                        -- SDK
+                                                                        -- CS
+                                                                        -- SDA -> A4
+                                                                        -- SCL -> A5
+                                                                        -- GND -> GND
+                                                                        -- 3V3 -> 3V3
+*/
+
+		 _______________________________________      
+		 | 7-12V                            SCL|                  
+		 |                                  SDA|                  
+		 |                                 AREF|                  
+		 |                                  GND| 
+		 |                                   13| 
+		 |IOREF                              12| 
+		 |RESET                             -11| 
+		 |3V3                               -10| 
+		 |5V                                 -9| 
+		 |GND                                 8| 
+		 |GND                                  |  
+		 |VIN                                 7| 
+		 |                                   -6| 
+		 |A0                                 -5| 
+		 |A1/14                               4| 
+		 |A2/15                         INT1/-3| 
+		 |A3/16                         INT0/ 2| 
+		 |A4/17                            TX/1| 
+		 |A5/18/SDA                        RX/0| 
+		 |A6                                   |
+		 |A7                                 14|
+		 |A8                                 15|
+		 |A9                                 16|
+		 |A10                                17|
+		 |A11                                18|
+		 |A12                                19|
+		 |DAC0                          SDA  20|
+		 |DAC1                          SCL  21|
+		 |                                     |
+		 |                                     |
+		 |	D                                  |
+		 |	N 2 0 8 6 4 2 0 8 6 4 2 0 8 6 4 2 V| 
+		 |	G 5 5 4 4 4 4 4 3 3 3 3 3 2 2 2 2 5|
+		 |	| | | | | | | | | | | | | | | | | |  
+		 |	G 5 5 4 4 4 4 4 3 3 3 3 3 2 2 2 2 5|                              
+		 |	N 3 1 9 7 5 3 1 9 7 5 3 1 9 7 5 3 V|                              
+		 |	D
+		 |_____________________________________| 
+                       
+ 
+ 
+ GND 5                      
+     3
